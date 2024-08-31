@@ -42,6 +42,7 @@ import Nav from "../../components/NavbarScroll/Nav";
 import { useDispatch } from "react-redux";
 import { clientsApi, typeApi } from "../../Api/slice/ApiGet";
 import paralexx from "../../assets/img/Frame 14.png";
+// import paralexx from "../../assets/img/point.png";
 import Top from "../../components/Top/Top";
 function Home() {
   const [active, setActive] = useState(false);
@@ -327,6 +328,7 @@ function Home() {
 
       <div className={`point-overlay ${showOverlay ? "show" : ""}`}>
         <img src={paralexx} alt="" />
+        {/* <span>POINT</span> */}
       </div>
 
       {/* start works */}
@@ -338,7 +340,7 @@ function Home() {
           </div>
         </div>
         <Container>
-          <Row className="example p-5">
+          <Row className="example p-5 ">
             <Col lg={12} md={12} sm={12}>
               <div
                 className="im"
@@ -1404,7 +1406,7 @@ function Home() {
                         <img
                           src={img.logo}
                           alt={`Client logo ${index}`}
-                          style={{ width: "100px" }}
+                          style={{ width: "100px",maxWidth:"50%",height:"80%" }}
                         />
                       </Col>
                     ))}
