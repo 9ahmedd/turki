@@ -223,9 +223,9 @@ console.log(list)
                 <video
                   src={play}
                   autoPlay
-                  // muted
+                  muted
                   loop
-                  controls
+                  // controls
                   // style={{ width: "100%", height: "auto" }}
                   style={{
                     width: "100%", // Set to your desired size

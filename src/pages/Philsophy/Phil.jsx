@@ -125,7 +125,7 @@ function Phil() {
             <Col lg={4} md={12} sm={12}>
               <div className="phil-img position-relative">
                 <img className="big" src={land} alt="" />
-                <Lottie
+                {/* <Lottie
                   className="loti"
                   animationData={pract}
                   style={{
@@ -135,7 +135,7 @@ function Phil() {
                     transform: "translateX(-50%)",
                     width: "150px",
                   }}
-                />
+                /> */}
               </div>
             </Col>
           </Row>
