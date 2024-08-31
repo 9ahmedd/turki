@@ -115,7 +115,7 @@
   position: fixed;
   /* left: 0; */
   width: fit-content;
-  z-index: 2;
+  z-index: 999;
   background-color: #8F779A;
   margin: 0 50px;
   display: none;

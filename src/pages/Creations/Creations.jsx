@@ -250,7 +250,7 @@ const content = [
           
         }}
       >
-         <div className="parent_div   3xl:mt-70 desktop  ">
+         <div className="parent_div   3xl:mt-70   ">
         <div className="highlight-container  ">
                 <img
                   src={highlight}
@@ -275,7 +275,7 @@ const content = [
                     })}
                    
                   </div>
-                  <div className="content_phone ">
+                  <div className="content_phone hidden md:block lg:block xl:block 2xl:block ">
                   {content.map((content,idx)=>{
                     return(<>
                     
@@ -301,39 +301,9 @@ const content = [
         
           
         </div>
-        <div className="hidden lg:block xl:block 2xl:block" style={{backgroundColor:'#F5F8FB',height:'50vh'}}></div>
-        <div className=" mobile flex items-center justify-center flex-col md:hidden lg:hidden xl:hidden 2xl:hidden">
-          
-                      <div className="highlight-container flex items-center justify-center ">
-                <img
-                  src={highlight}
-                  alt="Highlights"
-                  className="highlights-image"
-                />
-                 <div className="div_block-27"></div>
-                    </div>
-               <div className="div_block min-h-screen gap-11 flex items-center justify-center">
-                  <div className="right_img">
-                      {content.map((content,idx)=>{
-                    return(<>
-                    
-                     <div key={idx} className="screen-container">
-                     {content.content}
-                    </div>
-                    
-                    </>)
+          <div className="block lg:block xl:block 2xl:block" style={{backgroundColor:'#F5F8FB',height:'50vh'}}></div>
 
-
-                    })}
-                   
-                  </div>
-                  
-               </div>
-
-       
-          
-          
-        </div>
+      
       </div>
       <Top/>
       <div ref={bottomRef}>
