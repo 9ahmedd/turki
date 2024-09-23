@@ -325,19 +325,42 @@
   /* Ensure the image does not exceed its container */
 }
 
-.small {
+.animated-text {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.animated-text.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animated-image {
+  transition: transform 0.5s ease-in-out, width 0.5s ease-in-out;
+}
+
+.animated-image.small {
+  width: 50%;
+  transform: scale(1);
+}
+
+.animated-image.big {
+  width: 100%;
+  transform: scale(1.1);
+}
+
+/* .small {
   width: 50%;
   position: relative;
 transition: 2s;
-  /* Adjust this value as needed */
 }
 
 .big {
   width: 100%;
   position: relative;
 transition: 2s;
-  /* Initial width or hidden state */
-}
+} */
 
 .descc {
   display: flex;
@@ -534,3 +557,6 @@ transition: 2s;
     }
   }
 }
+
+
+

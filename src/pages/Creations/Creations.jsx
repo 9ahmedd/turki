@@ -210,14 +210,14 @@ const content = [
             <Col lg={12} md={12} sm={12}>
               <div className="creations-content">
                 <div className="first-gif">
-                  <div className="one-gif" data-aos="fade-up-right"   data-aos-easing="linear"
+                  {/* <div className="one-gif" data-aos="fade-up-right"   data-aos-easing="linear"
      data-aos-duration="2500">
                     <img src={settings} alt="" />
-                  </div>
-                  <div className="two-gif" data-aos="fade-up-left"   data-aos-easing="linear"
+                  </div> */}
+                  {/* <div className="two-gif" data-aos="fade-up-left"   data-aos-easing="linear"
      data-aos-duration="5000">
                     <img src={color} alt="" />{" "}
-                  </div>
+                  </div> */}
                 </div>
                 <div className="creations-text" data-aos="zoom-in"  data-aos-easing="linear"
      data-aos-duration="7000">
@@ -227,11 +227,11 @@ const content = [
                   </div>
                   <p>{t("global.creations.description")} </p>
                 </div>
-                <div className="last-gif">
+                {/* <div className="last-gif">
                   <div className="three-gif" data-aos="fade-down"  data-aos-duration="5000">
                     <img src={light} alt="" />
                   </div>
-                </div>
+                </div> */}
               </div>
             </Col>
           </Row>

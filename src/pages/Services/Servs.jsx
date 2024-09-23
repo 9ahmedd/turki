@@ -149,7 +149,7 @@ console.log(list)
                   i === parseInt(index) ? { ...item, isShowen: true } : item
                 )
               );
-            }, 3000);
+            }, 2000);
             observer.unobserve(entry.target);
             return () => clearTimeout(timer);
           }
@@ -157,11 +157,11 @@ console.log(list)
       },
       { threshold: 0.1 }
     );
-
+  
     refs.current.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
-
+  
     return () => {
       refs.current.forEach((ref) => {
         if (ref) observer.unobserve(ref);
@@ -243,49 +243,49 @@ console.log(list)
 
       {/* start section */}
       <div className="section mt-5">
-        <Container>
-          {list.map((e, index) => (
-            <React.Fragment key={e?.id}>
-              <div
-                className="all position-relative d-flex align-items-center gap-5"
-                style={{
-                  direction: "rtl",
-                  width: "100%",
-                  marginBottom: "150px",
-                }}
-              >
-                <div
-                  className="animated-text"
-                  data-aos="zoom-in"
-                  style={{
-                    width: "50%",
-                    display: e.isShowen ? "block" : "none",
-                    transition: "0.5s ",
-                  }}
-                >
-                  <div className="descc">
-                    <div className="icon" style={{ background: e?.gradient }}>
-                      <img src={e?.icon} alt="" />
-                    </div>
-                    <span className="titlee">{e?.title}</span>
-                    <span
-                      className="descp"
-                      dangerouslySetInnerHTML={{ __html: e?.description }}
-                    />
-                  </div>
-                </div>
-                <img
-                  src={e?.image}
-                  alt=""
-                  className={`animated-image ${e.isShowen ? "small " : "big "}`}
-                  data-aos={e.isShowen === false ? "zoom-in" : ""}
-                  ref={(el) => (refs.current[index] = el)}
-                  data-index={index}
-                />
-              </div>
-            </React.Fragment>
-          ))}
-        </Container>
+      <Container>
+  {list.map((e, index) => (
+    <React.Fragment key={e?.id}>
+      <div
+        className="all position-relative d-flex align-items-center gap-5"
+        style={{
+          direction: "rtl",
+          width: "100%",
+          marginBottom: "150px",
+        }}
+      >
+        <div
+          className={`animated-text ${e.isShowen ? "show" : ""}`}
+          data-aos="zoom-in"
+          style={{
+            width: "50%",
+            display: e.isShowen ? "block" : "none",
+          }}
+        >
+          <div className="descc">
+            <div className="icon" style={{ background: e?.gradient }}>
+              <img src={e?.icon} alt="" />
+            </div>
+            <span className="titlee">{e?.title}</span>
+            <span
+              className="descp"
+              dangerouslySetInnerHTML={{ __html: e?.description }}
+            />
+          </div>
+        </div>
+        <img
+          src={e?.image}
+          alt=""
+          className={`animated-image ${e.isShowen ? "small" : "big"}`}
+          data-aos={e.isShowen === false ? "zoom-in" : ""}
+          ref={(el) => (refs.current[index] = el)}
+          data-index={index}
+        />
+      </div>
+    </React.Fragment>
+  ))}
+</Container>
+
       </div>
       {/* End section */}
       <Top />

@@ -188,7 +188,7 @@ function Employment() {
                 <span>{t("global.employment.subtitle")}</span>
               </div>
               <p>{t("global.employment.description")}</p>
-              <img className="mx-auto" src={employ} alt="" />
+              {/* <img className="mx-auto" src={employ} alt="" /> */}
             </div>
           </div>
         </Container>

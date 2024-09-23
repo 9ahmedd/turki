@@ -128,23 +128,37 @@ function Home() {
   const [animationComplete, setAnimationComplete] = useState(false);
 
   useEffect(() => {
-    AOS.init({
-      duration: 1000, // مدة الأنيميشن بالمللي ثانية
-    });
+    // AOS.init({
+    //   duration: 1000, // مدة الأنيميشن بالمللي ثانية
+    // });
 
-    const handleScroll = () => {
-      if (!animationComplete && window.scrollY > 0) {
+    const handlePageLoad = () => {
+      if (!animationComplete) {
         setShowOverlay(true);
         setTimeout(() => {
           setShowOverlay(false);
           setAnimationComplete(true);
-        }, 3000); // قم بضبط التوقيت حسب الحاجة
+        }, 3000); // Adjust the timing as needed
       }
     };
-
+  
+    const handleScroll = () => {
+      if (!animationComplete && window.scrollY >= 0) {
+        setShowOverlay(true);
+        setTimeout(() => {
+          setShowOverlay(false);
+          setAnimationComplete(true);
+        }, 3000); // Adjust the timing as needed
+      }
+    };
+  
+    // Attach load event for page load
+    window.addEventListener("load", handlePageLoad);
+    // Optionally attach scroll event if needed
     window.addEventListener("scroll", handleScroll);
-
+  
     return () => {
+      window.removeEventListener("load", handlePageLoad);
       window.removeEventListener("scroll", handleScroll);
     };
   }, [animationComplete]);
@@ -340,8 +354,8 @@ function Home() {
           </div>
         </div>
         <Container>
-          <Row className="example p-5 ">
-            <Col lg={12} md={12} sm={12}>
+        <Row className="example p-5 ">
+          {/* <Col lg={6} md={6} sm={12}>
               <div
                 className="im"
                 style={{ height: "488px" }}
@@ -360,12 +374,14 @@ function Home() {
                   </a>
                 </div>
               </div>
-            </Col>
+              
+            </Col> */}
             {/* {portfolio.length == 4 && (
               <> */}
             {portfolio.length == 1 && (
               <>
-                <Col lg={4} md={4} sm={12}>
+           
+                <Col lg={6} md={6} sm={12}>
                   <div
                     className="im"
                     style={{
@@ -373,9 +389,9 @@ function Home() {
                       height: "627px",
                       marginTop: "10px",
                     }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                    }
+                    // data-aos={
+                    //   window.innerWidth <= 768 ? "zoom-in" : "fade-left"
+                    // }
                   >
                     <img src={portfolio[0]?.image} alt="Col 4" />
                     <div className="desc">
@@ -390,12 +406,12 @@ function Home() {
                     </div>
                   </div>
                 </Col>
-                <Col lg={8} md={8} sm={12}></Col>
+                <Col lg={6} md={6} sm={12}></Col>
               </>
             )}
             {portfolio.length == 2 && (
               <>
-                <Col lg={4} md={4} sm={12}>
+                <Col lg={6} md={6} sm={12}>
                   <div
                     className="im"
                     style={{
@@ -403,9 +419,9 @@ function Home() {
                       height: "627px",
                       marginTop: "10px",
                     }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                    }
+                    // data-aos={
+                    //   window.innerWidth <= 768 ? "zoom-in" : "fade-left"
+                    // }
                   >
                     <img src={portfolio[0]?.image} alt="Col 4" />
                     <div className="desc">
@@ -420,16 +436,16 @@ function Home() {
                     </div>
                   </div>
                 </Col>
-                <Col lg={8} md={8} sm={12}>
+                <Col lg={6} md={6} sm={12}>
                   <div
                     style={{
                       width: "100%",
                       height: "362px",
                       marginTop: "10px",
                     }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-right"
-                    }
+                    // data-aos={
+                    //   window.innerWidth <= 768 ? "zoom-in" : "fade-right"
+                    // }
                     className="im"
                   >
                     <img src={portfolio[1]?.image} alt="Col 8" />
@@ -447,7 +463,7 @@ function Home() {
             )}
             {portfolio.length == 3 && (
               <>
-                <Col lg={4} md={4} sm={12}>
+                <Col lg={6} md={6} sm={12}>
                   <div
                     className="im"
                     style={{
@@ -455,9 +471,9 @@ function Home() {
                       height: "627px",
                       marginTop: "10px",
                     }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                    }
+                    // data-aos={
+                    //   window.innerWidth <= 768 ? "zoom-in" : "fade-left"
+                    // }
                   >
                     <img src={portfolio[0]?.image} alt="Col 4" />
                     <div className="desc">
@@ -477,9 +493,9 @@ function Home() {
                       height: "302px",
                       marginTop: "10px",
                     }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                    }
+                    // data-aos={
+                    //   window.innerWidth <= 768 ? "zoom-in" : "fade-left"
+                    // }
                     className="im"
                   >
                     <img src={portfolio[2]?.image} alt="Col 4" />
@@ -495,16 +511,16 @@ function Home() {
                     </div>
                   </div>
                 </Col>
-                <Col lg={8} md={8} sm={12}>
+                <Col lg={6} md={6} sm={12}>
                   <div
                     style={{
                       width: "100%",
                       height: "362px",
                       marginTop: "10px",
                     }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-right"
-                    }
+                    // data-aos={
+                    //   window.innerWidth <= 768 ? "zoom-in" : "fade-right"
+                    // }
                     className="im"
                   >
                     <img src={portfolio[1]?.image} alt="Col 8" />
@@ -522,7 +538,7 @@ function Home() {
             )}
             {portfolio.length == 4 && (
               <>
-                <Col lg={4} md={4} sm={12}>
+                <Col lg={6} md={6} sm={12}>
                   <a href={portfolio[0]?.portfolio_link} target="_blank">
                     {" "}
                     <div
@@ -532,9 +548,9 @@ function Home() {
                         height: "627px",
                         marginTop: "10px",
                       }}
-                      data-aos={
-                        window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                      }
+                      // data-aos={
+                      //   window.innerWidth <= 768 ? "zoom-in" : "fade-left"
+                      // }
                     >
                       <img src={portfolio[0]?.image} alt="Col 4" />
                       <div className="desc">
@@ -557,9 +573,9 @@ function Home() {
                         height: "302px",
                         marginTop: "10px",
                       }}
-                      data-aos={
-                        window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                      }
+                      // data-aos={
+                      //   window.innerWidth <= 768 ? "zoom-in" : "fade-left"
+                      // }
                       className="im"
                     >
                       <img src={portfolio[2]?.image} alt="Col 4" />
@@ -576,7 +592,7 @@ function Home() {
                     </div>
                   </a>
                 </Col>
-                <Col lg={8} md={8} sm={12}>
+                <Col lg={6} md={6} sm={12}>
                   <a href={portfolio[1]?.portfolio_link} target="_blank">
                     {" "}
                     <div
@@ -638,9 +654,9 @@ function Home() {
                       height: "627px",
                       marginTop: "10px",
                     }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                    }
+                    // data-aos={
+                    //   window.innerWidth <= 768 ? "zoom-in" : "fade-left"
+                    // }
                   >
                     <img src={portfolio[0]?.image} alt="Col 4" />
                     <div className="desc">
@@ -660,9 +676,9 @@ function Home() {
                       height: "302px",
                       marginTop: "10px",
                     }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                    }
+                    // data-aos={
+                    //   window.innerWidth <= 768 ? "zoom-in" : "fade-left"
+                    // }
                     className="im"
                   >
                     <img src={portfolio[2]?.image} alt="Col 4" />
@@ -730,9 +746,9 @@ function Home() {
                       height: "627px",
                       marginTop: "10px",
                     }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                    }
+                    // data-aos={
+                    //   window.innerWidth <= 768 ? "zoom-in" : "fade-left"
+                    // }
                   >
                     <img src={portfolio[4]?.image} alt="Col 4" />
                     <div className="desc">
@@ -751,7 +767,7 @@ function Home() {
             )}
             {portfolio.length == 6 && (
               <>
-                <Col lg={4} md={4} sm={12}>
+                <Col lg={6} md={6} sm={12}>
                   <div
                     className="im"
                     style={{
@@ -759,9 +775,9 @@ function Home() {
                       height: "627px",
                       marginTop: "10px",
                     }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                    }
+                    // data-aos={
+                    //   window.innerWidth <= 768 ? "zoom-in" : "fade-left"
+                    // }
                   >
                     <img src={portfolio[0]?.image} alt="Col 4" />
                     <div className="desc">
@@ -781,9 +797,9 @@ function Home() {
                       height: "302px",
                       marginTop: "10px",
                     }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                    }
+                    // data-aos={
+                    //   window.innerWidth <= 768 ? "zoom-in" : "fade-left"
+                    // }
                     className="im"
                   >
                     <img src={portfolio[2]?.image} alt="Col 4" />
@@ -799,7 +815,7 @@ function Home() {
                     </div>
                   </div>
                 </Col>
-                <Col lg={8} md={8} sm={12}>
+                <Col lg={6} md={6} sm={12}>
                   <div
                     style={{
                       width: "100%",
@@ -843,7 +859,7 @@ function Home() {
                     </div>
                   </div>
                 </Col>
-                <Col lg={4} md={4} sm={12}>
+                <Col lg={6} md={6} sm={12}>
                   <div
                     className="im"
                     style={{
@@ -851,9 +867,9 @@ function Home() {
                       height: "627px",
                       marginTop: "10px",
                     }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                    }
+                    // data-aos={
+                    //   window.innerWidth <= 768 ? "zoom-in" : "fade-left"
+                    // }
                   >
                     <img src={portfolio[4]?.image} alt="Col 4" />
                     <div className="desc">
@@ -868,7 +884,7 @@ function Home() {
                     </div>
                   </div>
                 </Col>
-                <Col lg={8} md={8} sm={12}>
+                <Col lg={6} md={6} sm={12}>
                   <div
                     style={{
                       width: "100%",
@@ -888,363 +904,6 @@ function Home() {
                         alt=""
                       />
                       <span> {portfolio[5]?.title}</span>
-                    </div>
-                  </div>
-                </Col>
-              </>
-            )}
-            {/* </>
-            )} */}
-            {portfolio.length == 7 && (
-              <>
-                <Col lg={4} md={4} sm={12}>
-                  <div
-                    className="im"
-                    style={{
-                      width: "100%",
-                      height: "627px",
-                      marginTop: "10px",
-                    }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                    }
-                  >
-                    <img src={portfolio[0]?.image} alt="Col 4" />
-                    <div className="desc">
-                      <img
-                        src={portfolio[0]?.icon}
-                        alt=""
-                        style={{ width: "111px" }}
-                      />
-                      <span style={{ fontSize: "30px" }}>
-                        {portfolio[0]?.title}
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "302px",
-                      marginTop: "10px",
-                    }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                    }
-                    className="im"
-                  >
-                    <img src={portfolio[2]?.image} alt="Col 4" />
-                    <div className="desc">
-                      <img
-                        src={portfolio[2]?.icon}
-                        alt=""
-                        style={{ width: "111px" }}
-                      />
-                      <span style={{ fontSize: "30px" }}>
-                        {portfolio[2]?.title}
-                      </span>
-                    </div>
-                  </div>
-                </Col>
-                <Col lg={8} md={8} sm={12}>
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "362px",
-                      marginTop: "10px",
-                    }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-right"
-                    }
-                    className="im"
-                  >
-                    <img src={portfolio[1]?.image} alt="Col 8" />
-                    <div className="desc">
-                      <img
-                        style={{ width: "111px" }}
-                        src={portfolio[1]?.icon}
-                        alt=""
-                      />{" "}
-                      <span> {portfolio[1]?.title}</span>
-                    </div>
-                  </div>
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "568px",
-                      marginTop: "10px",
-                    }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-right"
-                    }
-                    className="im"
-                  >
-                    <img src={portfolio[3]?.image} alt="Col 8" />
-                    <div className="desc">
-                      <img
-                        style={{ width: "171px" }}
-                        src={portfolio[3]?.icon}
-                        alt=""
-                      />
-                      <span> {portfolio[3]?.title}</span>
-                    </div>
-                  </div>
-                </Col>
-                <Col lg={4} md={4} sm={12}>
-                  <div
-                    className="im"
-                    style={{
-                      width: "100%",
-                      height: "627px",
-                      marginTop: "10px",
-                    }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                    }
-                  >
-                    <img src={portfolio[4]?.image} alt="Col 4" />
-                    <div className="desc">
-                      <img
-                        src={portfolio[4]?.icon}
-                        alt=""
-                        style={{ width: "111px" }}
-                      />
-                      <span style={{ fontSize: "30px" }}>
-                        {portfolio[4]?.title}
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "302px",
-                      marginTop: "10px",
-                    }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                    }
-                    className="im"
-                  >
-                    <img src={portfolio[6]?.image} alt="Col 4" />
-                    <div className="desc">
-                      <img
-                        src={portfolio[6]?.icon}
-                        alt=""
-                        style={{ width: "111px" }}
-                      />
-                      <span style={{ fontSize: "30px" }}>
-                        {portfolio[6]?.title}
-                      </span>
-                    </div>
-                  </div>
-                </Col>
-                <Col lg={8} md={8} sm={12}>
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "362px",
-                      marginTop: "10px",
-                    }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-right"
-                    }
-                    className="im"
-                  >
-                    <img src={portfolio[5]?.image} alt="Col 8" />
-                    <div className="desc">
-                      <img
-                        style={{ width: "171px" }}
-                        src={portfolio[5]?.icon}
-                        alt=""
-                      />
-                      <span> {portfolio[5]?.title}</span>
-                    </div>
-                  </div>
-                </Col>
-              </>
-            )}
-            {portfolio.length == 8 && (
-              <>
-                <Col lg={4} md={4} sm={12}>
-                  <div
-                    className="im"
-                    style={{
-                      width: "100%",
-                      height: "627px",
-                      marginTop: "10px",
-                    }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                    }
-                  >
-                    <img src={portfolio[0]?.image} alt="Col 4" />
-                    <div className="desc">
-                      <img
-                        src={portfolio[0]?.icon}
-                        alt=""
-                        style={{ width: "111px" }}
-                      />
-                      <span style={{ fontSize: "30px" }}>
-                        {portfolio[0]?.title}
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "302px",
-                      marginTop: "10px",
-                    }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                    }
-                    className="im"
-                  >
-                    <img src={portfolio[2]?.image} alt="Col 4" />
-                    <div className="desc">
-                      <img
-                        src={portfolio[2]?.icon}
-                        alt=""
-                        style={{ width: "111px" }}
-                      />
-                      <span style={{ fontSize: "30px" }}>
-                        {portfolio[2]?.title}
-                      </span>
-                    </div>
-                  </div>
-                </Col>
-                <Col lg={8} md={8} sm={12}>
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "362px",
-                      marginTop: "10px",
-                    }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-right"
-                    }
-                    className="im"
-                  >
-                    <img src={portfolio[1]?.image} alt="Col 8" />
-                    <div className="desc">
-                      <img
-                        style={{ width: "111px" }}
-                        src={portfolio[1]?.icon}
-                        alt=""
-                      />{" "}
-                      <span> {portfolio[1]?.title}</span>
-                    </div>
-                  </div>
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "568px",
-                      marginTop: "10px",
-                    }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-right"
-                    }
-                    className="im"
-                  >
-                    <img src={portfolio[3]?.image} alt="Col 8" />
-                    <div className="desc">
-                      <img
-                        style={{ width: "171px" }}
-                        src={portfolio[3]?.icon}
-                        alt=""
-                      />
-                      <span> {portfolio[3]?.title}</span>
-                    </div>
-                  </div>
-                </Col>
-                <Col lg={4} md={4} sm={12}>
-                  <div
-                    className="im"
-                    style={{
-                      width: "100%",
-                      height: "627px",
-                      marginTop: "10px",
-                    }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                    }
-                  >
-                    <img src={portfolio[4]?.image} alt="Col 4" />
-                    <div className="desc">
-                      <img
-                        src={portfolio[4]?.icon}
-                        alt=""
-                        style={{ width: "111px" }}
-                      />
-                      <span style={{ fontSize: "30px" }}>
-                        {portfolio[4]?.title}
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "302px",
-                      marginTop: "10px",
-                    }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-left"
-                    }
-                    className="im"
-                  >
-                    <img src={portfolio[6]?.image} alt="Col 4" />
-                    <div className="desc">
-                      <img
-                        src={portfolio[6]?.icon}
-                        alt=""
-                        style={{ width: "111px" }}
-                      />
-                      <span style={{ fontSize: "30px" }}>
-                        {portfolio[6]?.title}
-                      </span>
-                    </div>
-                  </div>
-                </Col>
-                <Col lg={8} md={8} sm={12}>
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "362px",
-                      marginTop: "10px",
-                    }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-right"
-                    }
-                    className="im"
-                  >
-                    <img src={portfolio[5]?.image} alt="Col 8" />
-                    <div className="desc">
-                      <img
-                        style={{ width: "171px" }}
-                        src={portfolio[5]?.icon}
-                        alt=""
-                      />
-                      <span> {portfolio[5]?.title}</span>
-                    </div>
-                  </div>
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "568px",
-                      marginTop: "10px",
-                    }}
-                    data-aos={
-                      window.innerWidth <= 768 ? "zoom-in" : "fade-right"
-                    }
-                    className="im"
-                  >
-                    <img src={portfolio[7]?.image} alt="Col 8" />
-                    <div className="desc">
-                      <img
-                        style={{ width: "171px" }}
-                        src={portfolio[7]?.icon}
-                        alt=""
-                      />
-                      <span> {portfolio[7]?.title}</span>
                     </div>
                   </div>
                 </Col>
@@ -1379,41 +1038,32 @@ function Home() {
             </p>
           </div>
         </div>
-        <Container>
-          <Row className="grid-logos">
-            <Col
-              lg={12}
-              md={12}
-              sm={12}
-              className="d-flex align-items-center justify-content-center"
-            >
-              <div
+        <Container fluid={false} className="p-2">
+          <div className="grid-logos">
+          <div
                 data-aos="zoom-in"
                 className="logos d-flex align-items-center justify-content-center"
               >
-                <Row className="d-flex align-items-center justify-content-center">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-2">
                   {dataClients
                     .slice(0, visibleBatch * batchSize)
                     .map((img, index) => (
-                      <Col
+                      <div
                         key={index}
-                        lg={2} // كل 6 عناصر يكونون صف واحد على الشاشات الكبيرة
-                        md={3} // كل 4 عناصر يكونون صف واحد على الشاشات المتوسطة
-                        sm={6} // كل 2 عنصرين يكونون صف واحد على الشاشات الصغيرة
+                        
                         className="mb-5 d-flex align-items-center justify-content-center"
                         data-aos="fade-down"
                       >
                         <img
                           src={img.logo}
                           alt={`Client logo ${index}`}
-                          style={{ width: "100px",maxWidth:"50%",height:"80%" }}
+                          style={{ width: "100%" }}
                         />
-                      </Col>
+                      </div>
                     ))}
-                </Row>
+                </div>
               </div>
-            </Col>
-          </Row>
+          </div>
           <Swiper
             className={`swipe-logos mx-auto mt-5`}
             style={{ direction: lang === "ar" ? "rtl" : "ltr" }}
